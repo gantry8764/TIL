@@ -523,3 +523,464 @@
 
 #### 1) 데이터베이스 / 테이블 생성
 
+- 데이터베이스(스키마) 생성
+  - MySQL에서는 데이터베이스와 스키마가 동일한 의미로 사용
+  - root 권한으로 생성
+  - Schemas 탭에서 우클릭 / Create Schema...
+  - **Name : shopdb** (소문자로 지정 > 대문자로 하면 소문자로 바꾼다는 알림)
+
+
+
+- **Charset / Collation : utf8 / Default Collation**
+  - Collation : 해당 문자셋을 어떻게 정렬할지 결정하는 방법
+  - ORDER BY, LIKE, Primary Key 등 SQL 연산에 영향
+
+
+
+- **Apply**
+
+
+
+#### 2) 데이터베이스 삭제
+
+- **Drop Schema / Drop Now**
+
+
+
+#### 3) 테이블 생성
+
+- shopdb / Tables 우클릭 Create Table
+  - 아직 SQL문 안하고 워크벤치에 GUI로 테이블 작성
+  - 데이터 입력
+
+
+
+#### 4) 데이터베이스 표준 질의어 SQL
+
+1. SQL 개요
+
+2. 데이터 정의어(DDL)
+
+3. 데이터 조작어(DML)
+
+4. 데이터 제어어(DCL)
+
+   
+
+#### 5) SQL 개요
+
+- 데이터베이스 질의어
+  - 데이터베이스를 구축하기 위한 도구로서
+  - 현대 정보시스템에서 매우 중요한 역할 담당
+  - 질의어(Query Language)는 검색 언어라는 의미지만
+  - 데이터를 검색하는 역할 외에 데이터의 입력, 수정, 삭제, 제어, 병행 제어, 복구 등
+  - 다양한 기능을 제공하는 종합적인 언어
+
+
+
+- SQL(Structured Query Language)
+  - 관계형 데이터베이스 관리 시스템(DBMS)의 데이터를 관리하기 위해 설계된 특수 목적의 프로그래밍 언어
+  - '에스큐엘' 또는 '시퀄'로 읽음
+  - 1970년대 말 밀국 IBM사의 한 연구소에서 데이터베이스 유형에 관계 없이 사용자들이 편리하게 사용하게 사용할 수 있는 질의어를 만들기 위해 개발
+  - 초기에는 SEQUEL(Structured English Query Language, 구조 영어 질의어)이라는 이름으로 시작
+  - 많은 수의 데이터베이스 관련 프로그램들이 SQL을 표준으로 채택하면서
+  - 자신의 제품에 특화 시킨 SQL 사용
+
+
+
+#### 6) 데이터 정의어(DDL)
+
+- 데이터베이스 / 테이블이나 관계의 구조를 생성하는데 사용
+
+- CREATE / ALTER / DROP 문
+
+  | SQL문  | 설명                                         |
+  | :----: | :------------------------------------------- |
+  | CREATE | **데이터베이스** 및 **객체 생성**            |
+  | ALTER  | 기존에 존재하는 데이터베이스의 **객체 변경** |
+  |  DROP  | 데이터베이스 및 **객체 삭제**                |
+
+- CREATE 문
+
+  - 테이블, 도메인, 뷰, 인덱스, 스키마 구조 정의
+
+  - **CREATE TABLE**
+
+    - 테이블 구성
+
+    - 속성(열)과 속성(열)에 관한 제약 정의
+
+    - 기본키 : PRIMARY KEY
+
+    - 외래키 : FOREIGN KEY
+
+    - 기본 형식 : **CREATE TABLE** 테이블명 (열이름 데이터타입 [,..제약조건]);
+
+      ​					**CREATE TABLE** 테이블명 (열이름 데이터타입 [NUO NULL] [UNIQUE] [DEFAULT...] [PRIMARY KEY 열이름] [FOREIGN KEY 열이름 REFERENCES 테이블(기본키)] [CONSTRAINT 명] ... );
+
+      | 표기 형식                  | 설명                                         |
+      | -------------------------- | -------------------------------------------- |
+      | NOT NULL                   | 빈 값 허용하지 않음                          |
+      | DEFAULT                    | **기본값**으로 설정                          |
+      | PRIMARY KEY                | **기본키** 설정                              |
+      | FOREIGN KEY                | **외래키** 설정                              |
+      | REFERENCES                 | **외래키가 참조할 테이블**(부모 테이블) 설정 |
+      | UNIQUE                     | **중복값이 없도록** 설정(대체키 설정 의미)   |
+      | CHECK                      | 특정 내용의 **제약 조건 설정**               |
+      | ON DELETE / ON UPDATE 옵션 | 참조되는 테이블의 행 **삭제/갱신 시 옵션**   |
+
+      
+
+  - **CREATE SCHEMA**
+
+  - CREATE DOMAIN
+
+  - CREATE INDEX
+
+  - CREATE VIEW
+
+- CREATE TABLE
+
+  - 테이블 생성 후 데이터 입력 시 주의
+    - publisher의 pubNo에 먼저 값을 입력해야
+    - book의 pubNo 입력할 때 오류 없음
+
+#### 7) 데이터 조작어(DML)
+
+- 테이블의 데이터를 검색, 삽입, 수정, 삭제 하는데 사용
+- SELECT / INSERT / DELETE / UPDAET 문
+- CRUD
+
+| SQL문  | 설명                                                   |
+| :----: | ------------------------------------------------------ |
+| INSERT | 데이터베이스 객체에 **데이터 입력**                    |
+| DELETE | 데이터베이스 객체에서 **데이터 삭제**                  |
+| UPDATE | 기존에 존재하는 데이터베이스 객체 내의 **데이터 수정** |
+| SELECT | 데이터베이스 객체로부터 **데이터 검색**                |
+
+
+
+#### 8) 데이터 제어어(DCL)
+
+- 데이터의 사용 권한을 관리하는 데 사용
+- GRANT / REVOKE / COMMIT / ROLLBACK 문
+
+| SQL문  | 설명                                          |
+| :----: | --------------------------------------------- |
+| GRANT  | 데이터베이스 객체에 **권한 부여**             |
+| REVOKE | 이미 부여된 데이터베이스 객체의 **권한 취소** |
+
+
+
+#### 9) 자동 증가
+
+- AUTO_INCREMENT
+  - 속성 값을 자동으로 증가
+
+- AUTO_INCREMENT = 100
+  - 기본값 100부터 증가
+
+
+
+- SET @@AUTO_INCREMENT_INCREMENT = 3
+  - 3씩 증가
+
+
+
+- 자동 증가 수정
+  - SET @COUNT = 0;
+  - UPDATE board SET boardNo = @COUNT:=@COUNT + 1;
+
+
+
+#### 10) ALTER 문 : 테이블 수정
+
+- 테이블에 대한 **정의 변경**
+- 새료운 열 추가, 특정 열의 디폴트 값 변경, 특정 열 삭제 등 수행
+
+
+
+#### 11) ALTER 문의 기본 형식
+
+- **ALTER TABLE**
+  - **ADD** : 열 추가
+  - **RENAME COLUMN** : 열의 이름 변경
+  - **MODIFY** : 열의 데이터 형식 변경
+  - **CHANGE** : 열의 이름과 데이터 형식 변경
+  - **DROP** : 여러 개의 열 삭제
+  - **DROP COLUMN** : 열 삭제
+  - **DROP PRIMARY KEY** : 기본키 삭제
+  - **DROP CONSTRAINT** : 제약조건 삭제
+
+
+
+#### 12) Safe Updates 모드 해제
+
+- 메뉴 Edit / Preferences
+- SQL Editor
+  - Safe Update (rejects ...) 체크 해제
+  - OK
+  - Workbench 종료했다가 다시 시작
+
+
+
+#### 13) 제약조건 삭제
+
+- 기본키 / 외래키 제약조건 삭제
+- 기본키 / 외래키 제약조건 추가
+- ON DELETE CASCADE
+- CHECK 제약조건 추가 / 삭제
+- DEFAULT 제약조건 추가 / 삭제
+
+
+
+#### 14) 기본키 / 외래키 제약조건 삭제
+
+```sql
+-- 기본키 / 외래키 삭제
+
+-- 기본키 삭제
+--  1) department 테이블의 기본키 삭제 
+-- 	student 테이블에서 외래키 제약조건이 설정되어 있으므로
+--  department의 기본키 삭제 시 오류 발생!!
+-- 	2) ->> 먼저 외래키 제약조건을 삭제하고 기본키 삭제
+-- 	department의 dptNo를 외래키로 사용하고 있는 테이블 : student와 professor
+
+-- 1) department 테이블의 기본키 삭제
+alter table department drop primary key;
+-- 외래키 제약조건에 위배되어 기본키 삭제 안 됨
+
+-- 2) -> 먼저 외래키 제약조건을 삭제하고
+-- student 테이블에서 외래키 제약조건 삭제
+alter table student
+	drop constraint FK_student_department;
+-- 외래키 제약조건이 있을 경우 먼저 외래키 제약조건을 삭제 후 기본키 삭제 가능
+
+-- professor2 테이블에서 외래키 제약조건 삭제
+alter table professor2
+	drop constraint FK_professor2_department2;
+    
+-- 3) 이제 department2 테이블의 기본키 삭제됨
+alter table department2 drop primary key;
+```
+
+
+
+#### 15) 기본키 / 외래키 제약조건 추가
+
+```sql
+-- department 테이블
+alter table department
+	add constraint PK_department_depNo primary key(depNo);
+    
+-- 테이블에 설정된 제약조건 확인
+select * from information_schema.table_constraints
+where table_schema="sqldb";
+
+select * from information_schema.table_constraints
+where table_schema="sqldb" and table_name="department";
+
+-- 외래키 제약조건 추가 : student와 professor 테이블
+alter table student
+	add constraint FK_student_department
+    foreign key (depNo) references department (depNo);
+    
+-- professor 테이블에 외래키 추가
+alter table professor2
+	add constraint FK_professor2_department2
+    foreign key (depNo) references department2(depNo);
+    
+select * from information_schema.table_constraints
+where table_schema="sqldb" and table_name="professor2";
+
+-- book3 테이블 생성 : 이름 없이 외래키 설정
+
+create table book3_1(
+	bookNo 	char(10) not null primary key,
+    bookName	varchar(30) not null,
+    bookPrice int default 10000 check(bookPrice>1000),
+    bookDate date,
+    pubNo	char(10) not null,
+    foreign key(pubNo) references publisher(pubNo)
+    -- 참조하는 외래키 생성(이름 지정 x)
+);
+
+-- 제약조건 확인
+select * from information_schema.table_constraints
+where table_schema="sqldb" and table_name="book3_1";
+```
+
+
+
+
+
+#### 16) ON DELETE CASCADE
+
+- 기준 테이블(기본키를 갖고 있는 테이블)의 데이터가 삭제되었을 때
+- 이 값을 사용하고 있는 테이블의 외래키 데이터도 자동으로 삭제되도록 설정
+
+```sql
+-- ON DELETE CASCADE
+-- ON DELETE CASCADE 제약조건으로 외래키 제약조건을 설정해야 하므로
+-- 기존 외래키 제약조건 먼저 삭제 후 다시 설정
+alter table student
+	add constraint FK_student_department 
+    foreign key(depNo) references department(depNo)
+    on delete cascade;
+```
+
+
+
+
+
+#### 17) CHECK / DEFAULT 제약조건 추가 / 삭제
+
+- CHECK 제약조건
+
+  - 삭제 시 제약조건 이름 필요
+
+  - 제약조건 확인
+
+    ```sql
+    -- 제약조건 확인
+    select * from information_schemaa.table_constraints
+    where table_schema="sqldb" and table_name="book";
+    ```
+
+    
+
+#### 데이터 조작어
+
+ - 데이터 입력 / 수정 / 삭제 / 검색
+ - INSERT 문
+ - UPDATE 문
+ - DELETE 문
+ - SELECT 문
+
+
+
+---
+
+### INSERT 문
+
+- 테이블에 새로운 행을 삽입하는 명령어
+
+
+
+#### INSERT 문 기본 형식
+
+- INSERT INTO 테이블명 (열이름 리스트) VALUES (값리스트);
+- INSERT INTO 테이블명 VALUES (값리스트);
+  - 모든 열에 값 저장
+- 예) student 테이블에 행 삽입
+  - INSERT INTO student (stdNo, stdName, stdYear, dptNo) VALUES ('2022001', '홍길동', 4, '1');
+
+
+
+#### 스키마 생성 : sqldb2
+
+- publisher / book 테이블 생성
+
+
+
+#### 데이터 임포트
+
+- CSV 파일을 읽어서 테이블 생성 및 데이터 입력
+- dbworkspace/0603/product.csv
+- 파일 import 시 제약조건 없어짐
+  - prdNo를 VARCHAR(10) NOT NULL로 변경 후
+  - 기본키 제약조건 추가 : PK_product_prdNo
+
+
+
+---
+
+### UPDATE 문
+
+- 특정 열의 값을 수정하는 명령어
+- 조건에 맞는 행을 찾아서 열의 값 수정
+
+
+
+#### UPDATE 문 기본 형식
+
+- **UPDATE** 테이블명 **SET** 열=값 WHERE 조건;
+- 예) 상품번호가 5인 행의 상품명을 'UHD TV'로 수정
+- **UPDATE** product **SET** **prdName='UHD TV'** **WHERE** prdNo='5';
+
+
+
+---
+
+### DELETE 문
+
+- 테이블에 있는 기존 행을 삭제하는 명령어
+
+
+
+#### DELETE 문 기본 형식
+
+- **DELETE FROM** 테이블명 **WHERE** 조건;
+- 예) 상품명이 '그늘막 텐트'인 행 삭제
+  - **DELETE FROM** product WHERE prdName='그늘막 텐트';
+- 테이블의 모든 행 삭제
+  - **DELETE FROM** product;
+
+
+
+---
+
+### SELECT 문
+
+- 테이블에서 조건에 맞는 행 검색
+
+
+
+#### SELECT 문 기본 형식
+
+- **SELECT** **열이름 리스트** **FROM** **테이블명** WHERE 검색 조건 / GROUP BY 열이름 / HAVING 검색 조건 / ORDER BY 열이름 ;
+
+| 기능            | 설명                                                         |
+| --------------- | ------------------------------------------------------------ |
+| SELECT 열이름   | 검색할 **열** 기술                                           |
+| FROM 테이블명   | 데이터를 검색할 **테이블명** 기술                            |
+| WHERE 조건      | 질의 결과에 포함될 행들이 만족해야 할 **조건** 기술          |
+| ORDER BY 열이름 | 특정 **열**의 값을 기준으로 질의 결과 **정렬**<br />**ASC** : 오름차순<br />**DESC** : 내림차순 |
+| GROUP BY 열이름 | **그룹** 질의를 기술할 때 사용<br />특정 **열**로 그룹화한 후 각 그룹에 대해 한 행씩 질의 결과 생성 |
+| HAVING 조건     | **GROUP BY 절에 의해 구성된 그룹들에 대해** 적용할 **조건** 기술 |
+
+
+
+
+
+#### 중복 제거
+
+- *: 모든 열 출력
+- **DISTINCT**
+  - 속성값이 중복되는 것이 있으면 한 번만 출력
+  - 예) 주문 테이블에서 '홍길동'이 여러 번 주문한 경우
+  - 한 번이라도 주문한 적이 있는 고객명 리스트 출력 시 DISTINCT 사용하면 '홍길동' 한 번만 출력
+
+
+
+#### 스키마 생성 : sqldb3
+
+- CSV 파일의 데이터를 읽어서 테이블 생성
+
+  - publisher
+
+  - book
+
+  - client
+
+  - bookSale
+
+- 데이터 타입 변경 : text -> VARCHAR()
+  - 모든 NO는 문자 타입
+  - 날짜는 DATE 타입
+- 기본키 / 외래키 설정
+
+
+
+---
+
