@@ -1195,3 +1195,4 @@ SELECT 열리스트 FROM 테이블명1 INNER JOIN 테이블명2 ON 조인조건(
 | **존재** | EXISTS, NOT EXISTS        | 다중    |
 | **한전** | ALL(모두), ANY(최소 하나) | 다중    |
 
+ 
