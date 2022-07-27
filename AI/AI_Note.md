@@ -118,13 +118,25 @@
   - model 패키지 / CelebrityVO 생성
     - value : 유명인 이름
     - confidence : 정확도
-    - service 패키지 생성
-      - CelebrityFaceRecogService 클래스 생성
-      - celebrityFaceRecog() 메소드 생성
+  - service 패키지 생성
+    - CelebrityFaceRecogService 클래스 생성
+    - celebrityFaceRecog() 메소드 생성
       1) 이미지 파일 보내고 결과 받아서 콘솔에 출력
-       - 자바 API 코드 복사해서 붙여 넣기
-       - ``import java.io.File;``
-       - ``import java.net.URL;``
-       - Client ID / Client Secret 입력
+           - 자바 API 코드 복사해서 붙여 넣기
+           - `import java.io.File;`
+            - `import java.net.URL;`
+            - Client ID / Client Secret 입력
+            - 이미지 파일 경로 입력
       2) JSON 결과 파싱
+           - jsonToVOList() 메소드 추가
+           - celebrityFaceRecog() 메소드에 jsonToVOList() 메소드 호출하고 결과 받는 코드 추가
+           - 컨트롤러에게 반환하기 위해 jsonToVOList() 메소드의 반환형 변경 및 return 문 추가
+           - 컨트롤러에서 service 호출하고 결과 받는 코드 변경 및 Model 추가
+           - celebrityResult.jsp에 출력 부분 추가 
       3) 파일 업로드 / 이미지 출력(서비스 제공)
+         - `ArrayList<CelebrityVO> jsonToVOList(String jsonResultStr)`
+         -  API 호출 결과 JSON 형식의 문자열 전달 받음
+         -  value와 confidence 추출하여 VO에 저장 / List에 추가
+         -  VO 리스트 반환
+
+----
