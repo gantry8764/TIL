@@ -141,9 +141,7 @@
           - WebConfig.java 파일 복사 : images
           - model로 파일명 저장 : fileName
           - 뷰에서 파일명으로 이미지 출력
-        
-        
-        
+   
 ### JSON 파싱 메소드  
 
 - `ArrayList<CelebrityVO> jsonToVOList(String jsonResultStr)`
@@ -224,6 +222,7 @@
         - 결과 받아서 `<canvas>`와 resultBox에 출력
 
 ---
+
 
 
 
